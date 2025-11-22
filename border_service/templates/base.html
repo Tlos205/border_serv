@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Пограничное управление ФСБ России по Республике Карелия{% endblock %}</title>
+    
+    <!-- Фавиконка и яблочные иконки -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+    
+    <!-- Основные стили -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/accessibility.css' %}"> <!-- версия для слабовидящих -->
+    
+    <!-- Шрифт PT Sans (как на большинстве госсайтов) -->
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+    <!-- Панель доступности (включается по куки) -->
+    <div id="accessibility-panel" class="hidden">
+        <button onclick="toggleHighContrast()">Высококонтрастный</button>
+        <button onclick="increaseFont()">А+</button>
+        <button onclick="decreaseFont()">А-</button>
+        <button onclick="resetFont()">Сброс</button>
+    </div>
+    <button id="accessibility-toggle" onclick="toggleAccessibilityPanel()">Версия для слабовидящих</button>
+
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="header-logo">
+                    <img src="{% static 'img/emblem.png' %}" alt="Герб РФ">
+                    <div class="header-title">
+                        <h1>Пограничное управление ФСБ России<br>по Республике Карелия</h1>
+                    </div>
+                </div>
+                <div class="header-banners">
+                    <a href="tel:88001234567" class="banner-trust">Телефон доверия ФСБ: 8-800-... </a>
+                    <a href="#" class="banner-corruption">Сообщить о коррупции</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Навигация -->
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li><a href="{% url 'leadership' %}">Руководство</a></li>
+                <li><a href="{% url 'structure' %}">Структура</a></li>
+                <li><a href="{% url 'activity' %}">Деятельность</a></li>
+                <li><a href="{% url 'gosuslugi' %}">Государственные услуги</a></li>
+                <li><a href="{% url 'service' %}">Пограничная служба</a></li>
+                <li><a href="{% url 'residents' %}">Для жителей приграничья</a></li>
+                <li><a href="{% url 'presscenter' %}">Информационные материалы</a></li>
+                <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                <li><a href="{% url 'feedback' %}">Обратная связь</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Основное содержимое -->
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Пограничное управление ФСБ России по Республике Карелия</p>
+            <p>Телефон дежурного: +7 (8142) XX-XX-XX | Email: pu.karelia@fsb.ru</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/accessibility.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
