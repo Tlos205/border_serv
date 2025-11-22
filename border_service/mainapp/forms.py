@@ -1,8 +1,8 @@
 from django import forms
 from django.core.mail import send_mail
 from django.conf import settings
-from snowpenguin.django.recaptcha3.widgets import ReCaptchaHiddenInput
-from snowpenguin.django.recaptcha3.fields import ReCaptchaField
+# from snowpenguin.django.recaptcha3.widgets import ReCaptchaHiddenInput
+# from snowpenguin.django.recaptcha3.fields import ReCaptchaField
 
 class FeedbackForm(forms.Form):
     fio = forms.CharField(
@@ -31,7 +31,7 @@ class FeedbackForm(forms.Form):
     )
     
     # Вариант 1: ReCaptcha v3 (невидимая)
-    captcha = ReCaptchaField(widget=ReCaptchaHiddenInput())
+    # captcha = ReCaptchaField(widget=ReCaptchaHiddenInput())
 
     # Вариант 2: если нет рекапчи — простое поле (закомментируй строку выше и раскомментируй ниже)
     # captcha = forms.CharField(widget=forms.HiddenInput(), required=False)

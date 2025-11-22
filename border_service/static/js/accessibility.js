@@ -1,41 +1,48 @@
-function toggleAccessibilityPanel() {
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('accessibility-toggle');
     const panel = document.getElementById('accessibility-panel');
-    panel.classList.toggle('hidden');
-}
+    const closeBtn = document.getElementById('accessibility-close');
 
-function toggleHighContrast() {
-    document.body.classList.toggle('high-contrast');
-    localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
-}
+    // Открытие/закрытие панели
+    toggleBtn.addEventListener('click', () => panel.classList.toggle('active'));
+    closeBtn.addEventListener('click', () => panel.classList.remove('active'));
 
-function setFontSize(size) {
-    document.body.className = document.body.className.replace(/font-\w+/g, '');
-    if (size !== 'normal') {
-        document.body.classList.add('font-' + size);
-    }
-    localStorage.setItem('fontSize', size);
-}
+    // Закрытие по клику вне панели
+    document.addEventListener('click', (e) => {
+        if (!toggleBtn.contains(e.target) && !panel.contains(e.target)) {
+            panel.classList.remove('active');
+        }
+    });
 
-function increaseFont() {
+    // Высокий контраст
+    document.getElementById('high-contrast').addEventListener('click', () => {
+        document.body.classList.toggle('high-contrast');
+        localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
+    });
+
+    // Управление размером шрифта
     const sizes = ['normal', 'large', 'larger', 'largest'];
-    let current = localStorage.getItem('fontSize') || 'normal';
-    let next = sizes[Math.min(sizes.indexOf(current) + 1, sizes.length - 1)];
-    setFontSize(next);
-}
+    const setFontSize = (size) => {
+        document.body.classList.remove('font-large', 'font-larger', 'font-largest');
+        if (size !== 'normal') document.body.classList.add('font-' + size);
+        localStorage.setItem('fontSize', size);
+    };
 
-function decreaseFont() {
-    const sizes = ['normal', 'large', 'larger', 'largest'];
-    let current = localStorage.getItem('fontSize') || 'normal';
-    let next = sizes[Math.max(sizes.indexOf(current) - 1, 0)];
-    setFontSize(next);
-}
+    document.getElementById('font-increase').addEventListener('click', () => {
+        let current = localStorage.getItem('fontSize') || 'normal';
+        let idx = sizes.indexOf(current);
+        if (idx < sizes.length - 1) setFontSize(sizes[idx + 1]);
+    });
 
-function resetFont() {
-    setFontSize('normal');
-}
+    document.getElementById('font-decrease').addEventListener('click', () => {
+        let current = localStorage.getItem('fontSize') || 'normal';
+        let idx = sizes.indexOf(current);
+        if (idx > 0) setFontSize(sizes[idx - 1]);
+    });
 
-// При загрузке страницы — восстановить настройки
-document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('font-reset').addEventListener('click', () => setFontSize('normal'));
+
+    // Восстановление сохранённых настроек
     if (localStorage.getItem('highContrast') === 'true') {
         document.body.classList.add('high-contrast');
     }

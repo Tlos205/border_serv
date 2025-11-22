@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.decorators.http import require_POST
 from .forms import FeedbackForm
+from .models import News, Leader
 
 
 def feedback(request):
@@ -20,23 +21,38 @@ def feedback(request):
     return render(request, 'feedback.html', {'form': form})
 
 
+def leadership(request):
+    leaders = Leader.objects.all()
+    chief = Leader.objects.filter(position='chief').first()
+    deputies = Leader.objects.exclude(position='chief')
+    return render(request, 'leadership.html', {
+        'chief': chief,
+        'deputies': deputies,
+    })
+
+
 def home(request):
-    return render(request, 'index.html')
+    news = News.objects.filter(is_published=True).order_by('-pub_date')[:5]
+    announcements = News.objects.filter(is_published=True, is_important=True).order_by('-pub_date')[:3]
+    return render(request, 'index.html', {
+        'news_list': news,
+        'announcements': announcements,
+    })
+
+
+def presscenter(request):
+    all_news = News.objects.filter(is_published=True).order_by('-pub_date')
+    return render(request, 'presscenter.html', {'all_news': all_news})
+
 
 def activity(request):
     return render(request, 'activity.html')
-
-def presscenter(request):
-    return render(request, 'presscenter.html')
 
 def contacts(request):
     return render(request, 'contacts.html')
 
 def gosuslugi(request):
     return render(request, 'gosuslugi.html')
-
-def leadership(request):
-    return render(request, 'leadership.html')
 
 def residents(request):
     return render(request, 'residents.html')
@@ -46,6 +62,3 @@ def service(request):
 
 def structure(request):
     return render(request, 'structure.html')
-
-
-

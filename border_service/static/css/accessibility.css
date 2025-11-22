@@ -1,62 +1,107 @@
+/* ====================== ДОСТУПНОСТЬ — КЛАССИЧЕСКИЙ ГОС.ВАРИАНТ ====================== */
+.accessibility-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+}
+
+#accessibility-toggle {
+    width: 50px;
+    height: 50px;
+    /* background: #003366 url("static/img/eye-icon.png") center no-repeat; */
+    background: #003366 url('/static/img/eye-icon.png') center no-repeat;
+    background-size: 30px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#accessibility-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+}
+
+#accessibility-panel {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 260px;
+    background: #fff;
+    border: 2px solid #003366;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+#accessibility-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.accessibility-header {
+    background: #003366;
+    color: white;
+    padding: 12px 15px;
+    border-radius: 6px 6px 0 0;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#accessibility-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.accessibility-buttons {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.acc-btn {
+    padding: 12px 8px;
+    background: #f0f4f8;
+    border: 1px solid #003366;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.acc-btn:hover {
+    background: #003366;
+    color: white;
+}
+
 /* Высококонтрастный режим */
 body.high-contrast {
     background: black !important;
     color: yellow !important;
 }
-
-body.high-contrast a {
-    color: #00ff00 !important;
-}
-
+body.high-contrast a { color: #00ff00 !important; }
 body.high-contrast .header,
 body.high-contrast .nav,
-body.high-contrast .footer {
-    background: #000 !important;
-}
+body.high-contrast .footer { background: #000 !important; }
 
-body.high-contrast .welcome-block {
-    background: #111 !important;
-    border-left-color: yellow !important;
-}
-
-/* Увеличенный шрифт */
-.font-large { font-size: 1.4rem !important; }
-.font-larger { font-size: 1.7rem !important; }
-.font-largest { font-size: 2rem !important; }
-
-/* Скрытые элементы для слабовидящих */
-#accessibility-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-    background: #003366;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-#accessibility-panel {
-    position: fixed;
-    top: 70px;
-    right: 20px;
-    background: white;
-    border: 2px solid #003366;
-    padding: 15px;
-    z-index: 9998;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-}
-
-#accessibility-panel button {
-    display: block;
-    width: 100%;
-    margin: 8px 0;
-    padding: 10px;
-    background: #003366;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
+/* Размеры шрифта */
+.font-large * { font-size: 1.4rem !important; }
+.font-larger * { font-size: 1.7rem !important; }
+.font-largest * { font-size: 2.1rem !important; }

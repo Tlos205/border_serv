@@ -1,52 +1,60 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block title %}Информационные материалы — Пограничное управление{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block title %}Информационные
+материалы — Пограничное управление{% endblock %} {% block content %}
 <h1 class="page-title">Информационные материалы</h1>
 
 <div class="press-sections">
-    <section class="press-news">
-        <h2>Новости и пресс-релизы</h2>
-        <div class="news-item">
-            <span class="news-date">18.11.2025</span>
-            <h3>Пограничники пресекли попытку контрабанды 12 тонн лесоматериалов</h3>
-            <p>На МАПП «Вяртсиля» задержан грузовой автомобиль с недекларированным пиломатериалом...</p>
-            <a href="#" class="read-more">Читать полностью →</a>
-        </div>
-        <div class="news-item">
-            <span class="news-date">14.11.2025</span>
-            <h3>Состоялись совместные учения с пограничной охраной Финляндии</h3>
-            <p>В рамках соглашения SELO прошли плановые учения по поисково-спасательным операциям...</p>
-            <a href="#" class="read-more">Читать полностью →</a>
-        </div>
-        <a href="#" class="all-news-btn">Все новости →</a>
-    </section>
-
-    <section class="press-gallery">
-        <h2>Фото- и видеогалерея</h2>
-        <div class="gallery-grid">
-            <a href="{% static 'img/gallery/1.jpg' %}"><img src="{% static 'img/gallery/1_thumb.jpg' %}" alt="Учения"></a>
-            <a href="{% static 'img/gallery/2.jpg' %}"><img src="{% static 'img/gallery/2_thumb.jpg' %}" alt="Корабль"></a>
-            <a href="{% static 'img/gallery/3.jpg' %}"><img src="{% static 'img/gallery/3_thumb.jpg' %}" alt="Застава"></a>
-            <a href="{% static 'img/gallery/4.jpg' %}"><img src="{% static 'img/gallery/4_thumb.jpg' %}" alt="Собака"></a>
-        </div>
-    </section>
-
-    <section class="press-history">
-        <h2>Историческая справка</h2>
-        <p>Создано в 1957 году как 72-й Лоймольский пограничный отряд. Современное наименование — Пограничное управление ФСБ России по Республике Карелия — с 2005 года.</p>
-    </section>
-
-    <section class="press-heroes">
-        <h2>Герои-пограничники Карелии</h2>
-        <p>Более 50 военнослужащих удостоены государственных наград за мужество и героизм при охране государственной границы.</p>
-    </section>
-
-    <div class="hotline-block" style="margin: 50px auto; max-width: 600px;">
-        <strong>Телефон доверия Пограничного управления:</strong><br>
-        <a href="tel:+78142791235" class="phone-big">+7 (8142) 79-12-35</a>
+  <section class="press-news">
+    <h2>Новости и пресс-релизы</h2>
+    {% for item in all_news %}
+    <div class="news-item">
+      <span class="news-date">{{ item.pub_date|date:"d.m.Y" }}</span>
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.content|safe|truncatewords_html:30 }}</p>
+      <a href="#" class="read-more">Читать полностью →</a>
     </div>
+    {% empty %}
+    <p>Новостей пока нет.</p>
+    {% endfor %}
+  </section>
+
+  <section class="press-gallery">
+    <h2>Фото- и видеогалерея</h2>
+    <div class="gallery-grid">
+      <a href="{% static 'img/gallery/1.jpg' %}"
+        ><img src="{% static 'img/gallery/1_thumb.jpg' %}" alt="Учения"
+      /></a>
+      <a href="{% static 'img/gallery/2.jpg' %}"
+        ><img src="{% static 'img/gallery/2_thumb.jpg' %}" alt="Корабль"
+      /></a>
+      <a href="{% static 'img/gallery/3.jpg' %}"
+        ><img src="{% static 'img/gallery/3_thumb.jpg' %}" alt="Застава"
+      /></a>
+      <a href="{% static 'img/gallery/4.jpg' %}"
+        ><img src="{% static 'img/gallery/4_thumb.jpg' %}" alt="Собака"
+      /></a>
+    </div>
+  </section>
+
+  <section class="press-history">
+    <h2>Историческая справка</h2>
+    <p>
+      Создано в 1957 году как 72-й Лоймольский пограничный отряд. Современное
+      наименование — Пограничное управление ФСБ России по Республике Карелия — с
+      2005 года.
+    </p>
+  </section>
+
+  <section class="press-heroes">
+    <h2>Герои-пограничники Карелии</h2>
+    <p>
+      Более 50 военнослужащих удостоены государственных наград за мужество и
+      героизм при охране государственной границы.
+    </p>
+  </section>
+
+  <div class="hotline-block" style="margin: 50px auto; max-width: 600px">
+    <strong>Телефон доверия Пограничного управления:</strong><br />
+    <a href="tel:+78142791235" class="phone-big">+7 (8142) 79-12-35</a>
+  </div>
 </div>
 {% endblock %}

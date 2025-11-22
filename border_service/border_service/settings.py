@@ -16,6 +16,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -100,3 +102,13 @@ DEFAULT_FROM_EMAIL = 'no-reply@yourdomain.ru'
 RECAPTCHA_PUBLIC_KEY = 'твой_публичный_ключ'
 RECAPTCHA_PRIVATE_KEY = 'твой_приватный_ключ'
 RECAPTCHA_DEFAULT_SCORE = 0.5
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 400,
+        'width': '100%',
+    },
+}

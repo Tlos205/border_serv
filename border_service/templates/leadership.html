@@ -7,34 +7,28 @@
 <h1 class="page-title">Руководство</h1>
 
 <div class="leadership-grid">
-    <!-- Главный начальник -->
+    {% if chief %}
     <div class="leader-card chief">
-        <img src="{% static 'img/chief.jpg' %}" alt="Начальник Пограничного управления">
+        <img src="{{ chief.photo.url }}" alt="{{ chief.full_name }}">
         <div class="leader-info">
-            <h3>генерал-майор<br>Иванов Иван Иванович</h3>
-            <p class="position">Начальник Пограничного управления</p>
-            <p class="years">Годы службы в органах ФСБ: с 1998 года</p>
-            <p class="awards">Награждён орденом «За заслуги перед Отечеством» IV степени, медалью ордена «За заслуги перед Отечеством» II степени, медалью «За отличие в охране государственной границы» и др.</p>
+            <h3>{{ chief.rank }}<br>{{ chief.full_name }}</h3>
+            <p class="position">{{ chief.get_position_display }}</p>
+            {% if chief.years_service %}<p class="years">{{ chief.years_service }}</p>{% endif %}
+            {% if chief.awards %}<p class="awards">{{ chief.awards|safe }}</p>{% endif %}
         </div>
     </div>
+    {% endif %}
 
-    <!-- Заместители (пример — повторяй карточку сколько нужно) -->
+    {% for leader in deputies %}
     <div class="leader-card">
-        <img src="{% static 'img/deputy1.jpg' %}" alt="Полковник Петров">
+        <img src="{{ leader.photo.url }}" alt="{{ leader.full_name }}">
         <div class="leader-info">
-            <h3>полковник<br>Петров Пётр Петрович</h3>
-            <p class="position">Первый заместитель начальника — начальник штаба</p>
+            <h3>{{ leader.rank }}<br>{{ leader.full_name }}</h3>
+            <p class="position">{{ leader.get_position_display }}</p>
         </div>
     </div>
-
-    <div class="leader-card">
-        <img src="{% static 'img/deputy2.jpg' %}" alt="Полковник Сидоров">
-        <div class="leader-info">
-            <h3>полковник<br>Сидоров Сергей Сергеевич</h3>
-            <p class="position">Заместитель начальника по работе с личным составом</p>
-        </div>
-    </div>
-
-    <!-- Добавляй ещё карточки по аналогии -->
+    {% endfor %}
 </div>
+
+
 {% endblock %}
