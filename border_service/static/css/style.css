@@ -1,0 +1,234 @@
+/* ====================== ОБНУЛЕНИЕ И БАЗОВЫЕ НАСТРОЙКИ ====================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'PT Sans', 'Arial', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+}
+
+body {
+    margin: 0;
+    background: #f8f8f8;
+    min-width: 320px;
+}
+
+a {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+h1, h2, h3, h4 {
+    margin: 1em 0 0.5em;
+    color: #003366;
+    font-weight: 700;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ====================== ШАПКА ====================== */
+.header {
+    background: linear-gradient(to bottom, #003366, #002244);
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-logo img {
+    height: 90px;
+    width: auto;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.header-banners {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.banner-trust,
+.banner-corruption {
+    background: rgba(255,255,255,0.15);
+    padding: 8px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    color: white;
+    text-decoration: none;
+}
+
+.banner-trust:hover,
+.banner-corruption:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+/* ====================== НАВИГАЦИЯ ====================== */
+.nav {
+    background: #003366;
+    border-bottom: 4px solid #006633;
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+}
+
+.nav-list li {
+    flex: 1;
+    min-width: 140px;
+}
+
+.nav-list a {
+    display: block;
+    padding: 14px 10px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background 0.3s;
+}
+
+.nav-list a:hover {
+    background: #006633;
+}
+
+/* ====================== КОНТЕНТ ====================== */
+main {
+    padding: 30px 0;
+    background: white;
+    min-height: 70vh;
+}
+
+.welcome-block {
+    background: #f0f4f8;
+    padding: 30px;
+    border-left: 6px solid #006633;
+    margin-bottom: 40px;
+    line-height: 1.7;
+}
+
+.signature {
+    margin-top: 30px;
+    font-size: 1.1rem;
+}
+
+.blocks-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.news-block,
+.announcements-block {
+    flex: 1;
+    min-width: 300px;
+    background: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.news-list {
+    list-style: none;
+    padding: 0;
+}
+
+.news-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #ccc;
+}
+
+.news-list .date {
+    color: #006633;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.all-news {
+    display: inline-block;
+    margin-top: 15px;
+    color: #0056b3;
+    font-weight: bold;
+}
+
+.map-block {
+    margin-top: 40px;
+}
+
+.map-block iframe {
+    border: 2px solid #003366;
+    border-radius: 4px;
+}
+
+/* ====================== ПОДВАЛ ====================== */
+.footer {
+    background: #003366;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.footer p {
+    margin: 8px 0;
+}
+
+/* ====================== АДАПТИВ ====================== */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        text-align: center;
+    }
+    .header-logo {
+        margin-bottom: 15px;
+    }
+    .nav-list {
+        flex-direction: column;
+    }
+    .blocks-row {
+        flex-direction: column;
+    }
+}
