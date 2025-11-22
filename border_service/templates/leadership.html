@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Руководство — Пограничное управление ФСБ России по Республике Карелия{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Руководство</h1>
+
+<div class="leadership-grid">
+    <!-- Главный начальник -->
+    <div class="leader-card chief">
+        <img src="{% static 'img/chief.jpg' %}" alt="Начальник Пограничного управления">
+        <div class="leader-info">
+            <h3>генерал-майор<br>Иванов Иван Иванович</h3>
+            <p class="position">Начальник Пограничного управления</p>
+            <p class="years">Годы службы в органах ФСБ: с 1998 года</p>
+            <p class="awards">Награждён орденом «За заслуги перед Отечеством» IV степени, медалью ордена «За заслуги перед Отечеством» II степени, медалью «За отличие в охране государственной границы» и др.</p>
+        </div>
+    </div>
+
+    <!-- Заместители (пример — повторяй карточку сколько нужно) -->
+    <div class="leader-card">
+        <img src="{% static 'img/deputy1.jpg' %}" alt="Полковник Петров">
+        <div class="leader-info">
+            <h3>полковник<br>Петров Пётр Петрович</h3>
+            <p class="position">Первый заместитель начальника — начальник штаба</p>
+        </div>
+    </div>
+
+    <div class="leader-card">
+        <img src="{% static 'img/deputy2.jpg' %}" alt="Полковник Сидоров">
+        <div class="leader-info">
+            <h3>полковник<br>Сидоров Сергей Сергеевич</h3>
+            <p class="position">Заместитель начальника по работе с личным составом</p>
+        </div>
+    </div>
+
+    <!-- Добавляй ещё карточки по аналогии -->
+</div>
+{% endblock %}

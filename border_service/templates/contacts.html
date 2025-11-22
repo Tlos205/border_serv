@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Контакты — Пограничное управление{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Контакты</h1>
+
+<div class="contacts-grid">
+    <div class="contact-block">
+        <h2>Адрес</h2>
+        <p>185000, Республика Карелия,<br>г. Петрозаводск, ул. Андропова, д. 17</p>
+    </div>
+
+    <div class="contact-block">
+        <h2>Телефоны</h2>
+        <p><strong>Дежурная служба:</strong> +7 (8142) 79-12-34</p>
+        <p><strong>Телефон доверия:</strong> +7 (8142) 79-12-35</p>
+        <p><strong>По вопросам службы по контракту:</strong> +7 (8142) 79-12-36</p>
+    </div>
+
+    <div class="contact-block">
+        <h2>Электронная почта</h2>
+        <p><a href="mailto:pu.karelia@fsb.ru">pu.karelia@fsb.ru</a></p>
+    </div>
+
+    <div class="contact-block">
+        <h2>График приёма граждан</h2>
+        <p>Начальник управления: <strong>вторая среда месяца</strong>, 15:00–17:00<br>
+           Заместители: <strong>каждая пятница</strong>, 10:00–13:00<br>
+           По предварительной записи по тел. +7 (8142) 79-12-34</p>
+    </div>
+</div>
+
+<h2 style="margin-top: 50px;">Международные пункты пропуска</h2>
+<table class="checkpoints-table">
+    <thead>
+        <tr>
+            <th>Наименование</th>
+            <th>Тип</th>
+            <th>Статус</th>
+            <th>Режим работы</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>МАПП «Вяртсиля»</td><td>автомобильный</td><td>действует</td><td>круглосуточно</td></tr>
+        <tr><td>МАПП «Люття»</td><td>автомобильный</td><td>временно закрыт с 11.2023</td><td>—</td></tr>
+        <tr><td>МАПП «Суоперя»</td><td>временный</td><td>действует</td><td>08:00–20:00</td></tr>
+    </tbody>
+</table>
+
+<div style="margin-top: 50px;">
+    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A..." 
+            width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+</div>
+{% endblock %}
