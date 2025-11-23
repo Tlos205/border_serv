@@ -51,3 +51,22 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.add('font-' + savedSize);
     }
 });
+
+
+function toggleNews(link) {
+    const newsItem = link.closest('.news-item');
+    const excerpt  = newsItem.querySelector('.news-excerpt');
+    const full     = newsItem.querySelector('.news-full');
+    
+    if (full.style.display === 'block') {
+        // сейчас открыт полный → сворачиваем
+        full.style.display = 'none';
+        excerpt.style.display = 'block';
+        link.textContent = 'Читать полностью →';
+    } else {
+        // сейчас свёрнут → разворачиваем
+        full.style.display = 'block';
+        excerpt.style.display = 'none';
+        link.textContent = 'Свернуть ←';
+    }
+}

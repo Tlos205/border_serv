@@ -1,32 +1,32 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block title %}
-Руководство — Пограничное управление ФСБ России 
-по Республике Карелия
-{% endblock %}
+{% extends "base.html" %} 
+{% load static %} 
+{% block title %} Руководство —
+Пограничное управление ФСБ России по Республике Карелия 
+{% endblock %} 
 
 {% block content %}
+
 <h1 class="page-title">Руководство</h1>
 
 <div class="leadership-grid">
-
+  
   {% if chief %}
   <div class="leader-card chief">
-    <img src="{{ chief.photo.url }}" alt="{{ chief.full_name }}" />
-    <div class="leader-info">
-      <h3>{{ chief.rank }}<br />{{ chief.full_name }}</h3>
-      <p class="position">{{ chief.get_position_display }}</p>
-      {% if chief.years_service %}
-      <p class="years">{{ chief.years_service }}</p>
-      {% endif %}
-      {% if chief.awards %}
-      <p class="awards">{{ chief.awards|safe }}</p>
-      {% endif %}
+    <div class="chief-container"> 
+      <img src="{{ chief.photo.url }}" alt="{{ chief.full_name }}" />
+      <div class="leader-info">
+        <h3>{{ chief.rank }}<br />{{ chief.full_name }}</h3>
+        <p class="position">{{ chief.get_position_display }}</p>
+        {% if chief.years_service %}
+        <p class="years">{{ chief.years_service }}</p>
+        {% endif %} {% if chief.awards %}
+        <p class="awards">{{ chief.awards|safe }}</p>
+        {% endif %}
+      </div>
     </div>
   </div>
-  {% endif %}
-
+  {% endif %} 
+  
   {% for leader in deputies %}
   <div class="leader-card">
     <img src="{{ leader.photo.url }}" alt="{{ leader.full_name }}" />

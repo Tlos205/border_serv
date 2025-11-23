@@ -1,21 +1,52 @@
-{% extends "base.html" %} {% load static %} {% block title %}Информационные
-материалы — Пограничное управление{% endblock %} {% block content %}
+{% extends "base.html" %} 
+{% load static %} 
+{% load truncate_html %}
+
+{% block title %}Информационные
+материалы — Пограничное управление
+{% endblock %} 
+
+{% block content %}
 <h1 class="page-title">Информационные материалы</h1>
 
 <div class="press-sections">
   <section class="press-news">
     <h2>Новости и пресс-релизы</h2>
     {% for item in all_news %}
-    <div class="news-item">
-      <span class="news-date">{{ item.pub_date|date:"d.m.Y" }}</span>
-      <h3>{{ item.title }}</h3>
-      <p>{{ item.content|safe|truncatewords_html:30 }}</p>
-      <a href="#" class="read-more">Читать полностью →</a>
+
+   <div class="news-item">
+    <span class="news-date">{{ item.pub_date|date:"d.m.Y" }}</span>
+    <h3>{{ item.title|safe }}</h3>
+    
+    <div class="news-content">
+        <!-- Краткий анонс — обрезаем до 30–40 слов (можно менять) -->
+        <div class="news-excerpt">
+            {{ item.content|truncate_html:35|safe }}
+        </div>
+        
+        <!-- Полный текст — показывается после нажатия "Читать полностью" -->
+        <div class="news-full" style="display: none;">
+            {{ item.content|safe }}
+        </div>
     </div>
+    
+    <a href="#" class="read-more" onclick="toggleNews(this); return false;">
+        Читать полностью →
+    </a>
+</div>
+
+
     {% empty %}
     <p>Новостей пока нет.</p>
     {% endfor %}
   </section>
+
+
+
+
+
+
+
 
   <section class="press-gallery">
     <h2>Фото- и видеогалерея</h2>

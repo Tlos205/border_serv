@@ -283,6 +283,47 @@ main {
     line-height: 1.3;
 }
 
+
+
+/* ___мои экспиривенты___*/
+.chief-container {
+    display: flex;
+    align-items: stretch;
+    min-height: 320px;
+}
+
+.chief-container img {
+    width: 300px;
+    height: auto;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.chief-container .leader-info {
+    flex-grow: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+@media (max-width: 768px) {
+    .chief-container {
+        display: block; /* Возвращаем блочную структуру */
+    }
+    
+    .chief-container img {
+        width: 100%;
+        height: 320px; /* Как в оригинале */
+    }
+    
+    .chief-container .leader-info {
+        padding: 20px; /* Как в оригинале */
+    }
+}
+/* ___мои экспиривенты___*/
+
+
+
 .position {
     font-weight: bold;
     color: #006633;

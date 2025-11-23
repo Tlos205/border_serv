@@ -35,8 +35,8 @@
     <ul class="news-list">
       {% for item in news_list %}
       <li>
-        <span class="date">{{ item.pub_date|date:"d.m.Y" }}</span> — {{
-        item.title }}
+        <span class="date">{{ item.pub_date|date:"d.m.Y" }}</span> — 
+        {{ item.title }}
       </li>
       {% empty %}
       <li>Новостей пока нет</li>
