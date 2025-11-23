@@ -34,9 +34,11 @@ def leadership(request):
 def home(request):
     news = News.objects.filter(is_published=True).order_by('-pub_date')[:5]
     announcements = News.objects.filter(is_published=True, is_important=True).order_by('-pub_date')[:3]
+    chief = Leader.objects.filter(position='chief').first()
     return render(request, 'index.html', {
         'news_list': news,
         'announcements': announcements,
+        'chief': chief, # add for index page ТУТ повтор с функцией leadership
     })
 
 

@@ -1,34 +1,46 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Руководство — Пограничное управление ФСБ России по Республике Карелия{% endblock %}
+{% block title %}
+Руководство — Пограничное управление ФСБ России 
+по Республике Карелия
+{% endblock %}
 
 {% block content %}
 <h1 class="page-title">Руководство</h1>
 
 <div class="leadership-grid">
-    {% if chief %}
-    <div class="leader-card chief">
-        <img src="{{ chief.photo.url }}" alt="{{ chief.full_name }}">
-        <div class="leader-info">
-            <h3>{{ chief.rank }}<br>{{ chief.full_name }}</h3>
-            <p class="position">{{ chief.get_position_display }}</p>
-            {% if chief.years_service %}<p class="years">{{ chief.years_service }}</p>{% endif %}
-            {% if chief.awards %}<p class="awards">{{ chief.awards|safe }}</p>{% endif %}
-        </div>
-    </div>
-    {% endif %}
 
-    {% for leader in deputies %}
-    <div class="leader-card">
-        <img src="{{ leader.photo.url }}" alt="{{ leader.full_name }}">
-        <div class="leader-info">
-            <h3>{{ leader.rank }}<br>{{ leader.full_name }}</h3>
-            <p class="position">{{ leader.get_position_display }}</p>
-        </div>
+  {% if chief %}
+  <div class="leader-card chief">
+    <img src="{{ chief.photo.url }}" alt="{{ chief.full_name }}" />
+    <div class="leader-info">
+      <h3>{{ chief.rank }}<br />{{ chief.full_name }}</h3>
+      <p class="position">{{ chief.get_position_display }}</p>
+      {% if chief.years_service %}
+      <p class="years">{{ chief.years_service }}</p>
+      {% endif %}
+      {% if chief.awards %}
+      <p class="awards">{{ chief.awards|safe }}</p>
+      {% endif %}
     </div>
-    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% for leader in deputies %}
+  <div class="leader-card">
+    <img src="{{ leader.photo.url }}" alt="{{ leader.full_name }}" />
+    <div class="leader-info">
+      <h3>{{ leader.rank }}<br />{{ leader.full_name }}</h3>
+      <p class="position">{{ leader.get_position_display }}</p>
+      {% if leader.years_service %}
+      <p class="years">{{ leader.years_service }}</p>
+      {% endif %} {% if leader.awards %}
+      <p class="awards">{{ leader.awards|safe }}</p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
 </div>
-
 
 {% endblock %}
