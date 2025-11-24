@@ -72,15 +72,13 @@
             <img src="{% static 'img/emblem.png' %}" alt="Герб РФ" />
             <div class="header-title">
               <h1>
-                Пограничное управление ФСБ России<br />по Республике Карелия
+                Пограничное управление ФСБ России<br>по Республике Карелия
               </h1>
             </div>
           </div>
           <div class="header-banners">
-            <a href="tel:88001234567" class="banner-trust"
-              >Телефон доверия ФСБ: 8-800-...
-            </a>
-            <a href="#" class="banner-corruption">Сообщить о коррупции</a>
+            {% comment %} <a href="tel:88001234567" class="banner-trust">Телефон доверия ФСБ: 8-800-...</a> {% endcomment %}
+            {% comment %} <a href="#" class="banner-corruption">Сообщить о коррупции</a> {% endcomment %}
           </div>
         </div>
       </div>
@@ -97,10 +95,8 @@
           <li><a href="{% url 'activity' %}">Деятельность</a></li>
           <li><a href="{% url 'gosuslugi' %}">Государственные услуги</a></li>
           <li><a href="{% url 'service' %}">Пограничная служба</a></li>
-          <li><a href="{% url 'residents' %}">Для жителей приграничья</a></li>
-          <li>
-            <a href="{% url 'presscenter' %}">Информационные материалы</a>
-          </li>
+          {% comment %} <li><a href="{% url 'residents' %}">Для жителей приграничья</a></li> {% endcomment %}
+          {% comment %} <li><a href="{% url 'presscenter' %}">Информационные материалы</a></li> {% endcomment %}
           <li><a href="{% url 'contacts' %}">Контакты</a></li>
           <li><a href="{% url 'feedback' %}">Обратная связь</a></li>
         </ul>
@@ -116,7 +112,7 @@
         <p>
           &copy; 2025 Пограничное управление ФСБ России по Республике Карелия
         </p>
-        <p>Телефон дежурного: +7 (8142) XX-XX-XX | Email: pu.karelia@fsb.ru</p>
+        <p>Телефон дежурного: +7 (8142) 79-01-56 | Email: pu.karelia@fsb.ru</p>
       </div>
     </footer>
 
