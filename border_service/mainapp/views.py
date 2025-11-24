@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.decorators.http import require_POST
 from .forms import FeedbackForm
-from .models import News, Leader
+from .models import News, Leader, Vacancy
 
 
 def feedback(request):
@@ -45,6 +45,10 @@ def home(request):
 def presscenter(request):
     all_news = News.objects.filter(is_published=True).order_by('-pub_date')
     return render(request, 'presscenter.html', {'all_news': all_news})
+
+def contract_vacancies(request):
+    vacancies = Vacancy.objects.filter(is_published=True).order_by('sort_order')
+    return render(request, 'contract_vacancies.html', {'vacancies': vacancies})
 
 
 def activity(request):

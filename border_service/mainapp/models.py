@@ -49,3 +49,24 @@ class Leader(models.Model):
 
     def __str__(self):
         return f"{self.rank} {self.full_name}"
+    
+class Vacancy(models.Model):
+    military_unit = models.CharField("Районное подразделение", max_length=200, blank=True)
+    title = models.CharField("Должность", max_length=200)
+    rank = models.CharField("Звание", max_length=100, blank=True)
+    salary_from = models.PositiveIntegerField("Денежное довольствие от, руб.")
+    salary_to = models.PositiveIntegerField("Денежное довольствие до, руб.", blank=True, null=True)
+    requirements = models.TextField("Требования")
+    duties = models.TextField("Обязанности", blank=True)
+    benefits = models.TextField("Льготы и гарантии", blank=True)
+    contact_phone = models.CharField("Телефон для связи по вакансии", max_length=30, blank=True)
+    is_published = models.BooleanField("Опубликовано", default=True)
+    sort_order = models.PositiveIntegerField("Порядок", default=0)
+
+    class Meta:
+        verbose_name = "Вакансия (контракт)"
+        verbose_name_plural = "Вакансии на контракт"
+        ordering = ['sort_order']
+
+    def __str__(self):
+        return self.title

@@ -1,6 +1,6 @@
 # mainapp/admin.py
 from django.contrib import admin
-from .models import News, Leader
+from .models import News, Leader, Vacancy
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 
@@ -32,3 +32,11 @@ class LeaderAdmin(admin.ModelAdmin):
     list_editable = ['sort_order']
     search_fields = ['full_name', 'rank']
     list_filter = ['position']
+
+
+# вакансии
+@admin.register(Vacancy)
+class VacancyAdmin(admin.ModelAdmin):
+    list_display = ['title', 'salary_from', 'contact_phone', 'is_published', 'sort_order']
+    list_editable = ['sort_order', 'is_published']
+    search_fields = ['title', 'requirements']

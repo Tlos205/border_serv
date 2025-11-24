@@ -733,3 +733,71 @@ main {
     color: #d32f2f;
     font-size: 0.9rem;
 }
+
+/* ------вакансии------ */
+
+.vacancies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.vacancy-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.vacancy-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.vacancy-card h2 {
+    background: #003366;
+    color: white;
+    margin: 0;
+    padding: 18px 20px;
+    font-size: 1.25rem;
+}
+
+.vacancy-salary {
+    background: #006633;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.vacancy-block {
+    padding: 18px 20px;
+    border-bottom: 1px dashed #ddd;
+}
+
+.vacancy-block:last-of-type {
+    border-bottom: none;
+}
+
+.vacancy-contact {
+    background: #e8f5e8;
+    padding: 20px;
+    text-align: center;
+    border-top: 4px solid #006633;
+}
+
+.vacancy-contact .phone-big {
+    font-size: 1.8rem;
+    color: #006633;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.vacancy-contact .phone-big:hover {
+    text-decoration: underline;
+}

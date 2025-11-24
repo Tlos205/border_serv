@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Вакансии службы по контракту{% endblock %}
+
+{% block content %}
+<p class="page-title">Структурные подразделения Пограничного управления проводят набор на службу по контракту</p>
+<h1 class="page-title">Вакансии службы по контракту</h1>
+
+<div class="vacancies-grid">
+    {% for v in vacancies %}
+    <div class="vacancy-card">
+        <h2 align='center'>{% if v.military_unit %}{{ v.military_unit }}{% endif %}</h2>
+        <h2>{{ v.title }}{% if v.rank %} <br>({{ v.rank }}){% endif %}</h2>
+        
+        <div class="vacancy-salary">
+            от {{ v.salary_from|intcomma }} ₽
+            {% if v.salary_to %} до {{ v.salary_to|intcomma }} ₽{% endif %}
+        </div>
+
+        {% if v.requirements %}
+        <div class="vacancy-block">
+            <strong>Требования:</strong>
+            <p>{{ v.requirements|linebreaks }}</p>
+        </div>
+        {% endif %}
+
+        {% if v.duties %}
+        <div class="vacancy-block">
+            <strong>Обязанности:</strong>
+            <p>{{ v.duties|linebreaks }}</p>
+        </div>
+        {% endif %}
+
+        {% if v.benefits %}
+        <div class="vacancy-block">
+            <strong>Льготы:</strong>
+            <p>{{ v.benefits|linebreaks }}</p>
+        </div>
+        {% endif %}
+
+        {% if v.contact_phone %}
+        <div class="vacancy-contact">
+            <strong>Звонить по вакансии:</strong><br>
+            <a href="tel:{{ v.contact_phone|cut:' ' }}" class="phone-big">{{ v.contact_phone }}</a>
+        </div>
+        {% endif %}
+    </div>
+    {% empty %}
+    <p style="text-align:center; font-size:1.2rem;">Вакансии временно отсутствуют.</p>
+    {% endfor %}
+</div>
+{% endblock %}
