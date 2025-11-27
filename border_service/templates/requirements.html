@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% load static %} 
+{% block title %}Пограничная служба 
+— Пограничное управление ФСБ России по Республике Карелия{% endblock %} 
+{% block content %}
+<h1 class="page-title">Внимание!<br />Общие требования для Всех кандидатов</h1>
+
+<div class="service-tabs">
+  <div class="tabs-nav">
+    <button class="tab-btn active"
+            data-tab="conscript">Основные требования</button>
+    <button class="tab-btn" 
+            data-tab="education">Необходимые документы</button>
+  </div>
+
+  <!-- Вкладка: Основные требования -->
+  <div id="conscript" class="tab-content active">
+    <ul class="service-list">
+      <li><strong>Возраст:</strong> от 18 до 42 лет</li>
+      <li>
+        <strong>Гражданство:</strong>
+        <ul style="margin-top: 0.5rem; margin-left: 1rem">
+          <li>Кандидат должен быть гражданином Российской Федерации</li>
+          <li>
+            Не должен иметь гражданства (подданства) иностранного государства
+          </li>
+        </ul>
+      </li>
+      <li><strong>Образование:</strong> не ниже среднего общего</li>
+      <li>
+        <strong>Здоровье:</strong> годность к военной службе (категории А, Б)
+      </li>
+      <li>
+        <strong>Физическая подготовка:</strong> соответствие нормативам (<a
+          href="https://www.garant.ru/products/ipo/prime/doc/71298166/"
+          target="_blank"
+          style="color: #d32f2f; text-decoration: underline"
+          >приказ ФСБ России от 14 апреля 2016 г. № 253</a
+        >)
+      </li>
+      <li>
+        <strong>Отсутствие судимости</strong> и привлечения к уголовной
+        ответственности
+      </li>
+      <li><strong>Отсутствие близких родственников</strong> за пределами РФ</li>
+    </ul>
+
+
+    <div class="hotline-block">
+      <strong>Горячая линия по вопросам призыва и контрактной службы:</strong
+      ><br />
+      <a href="tel:+78142790156" class="phone-big">+7 (8142) 79-01-56</a>
+    </div>
+  </div>
+
+  <!-- Вкладка: Учебные заведения -->
+<div id="education" class="tab-content">
+    <h2>Основные документы</h2>
+    <ul class="edu-list">
+        <li><a href="https://disk.yandex.ru/i/otDJa5gOl6hdLg" target="_blank">Заявление о поступлении на службу</a></li>
+        <li><a href="https://disk.yandex.ru/i/zqlE5efOA5Zwgw" target="_blank">Анкета установленного образца</a></li>
+        <li><a href="https://disk.yandex.ru/i/xrTEBqwNjW8RBg" target="_blank">Автобиография</a></li>
+        <li><a href="https://disk.yandex.ru/i/68071PqLi6Na4w" target="_blank">Перечень документов</a></li>
+    </ul>
+</div>
+</div>
+{% endblock %}

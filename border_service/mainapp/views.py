@@ -50,6 +50,8 @@ def contract_vacancies(request):
     vacancies = Vacancy.objects.filter(is_published=True).order_by('sort_order')
     return render(request, 'contract_vacancies.html', {'vacancies': vacancies})
 
+def requirements(request):
+    return render(request, 'requirements.html')
 
 def activity(request):
     return render(request, 'activity.html')
@@ -62,6 +64,7 @@ def gosuslugi(request):
 
 def residents(request):
     return render(request, 'residents.html')
+
 
 def service(request):
     return render(request, 'service.html')
