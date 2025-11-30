@@ -14,9 +14,15 @@ RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
 COPY . .
 
+# ← ВОТ ГЛАВНОЕ ИСПРАВЛЕНИЕ: создаём папки и даём права ДО смены пользователя
+RUN mkdir -p /app/staticfiles /app/media && \
+    chown -R django-user:django-user /app/staticfiles /app/media
+
+# Создаём пользователя и переключаемся
 RUN adduser --disabled-password --gecos '' django-user
 USER django-user
 
+# Теперь collectstatic и migrate пройдут без ошибок
 RUN python manage.py collectstatic --noinput --clear
 RUN python manage.py migrate --noinput
 
