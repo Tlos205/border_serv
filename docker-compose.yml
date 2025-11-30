@@ -46,7 +46,7 @@ services:
              --error-logfile -"
 
   nginx:
-    build: ./nginx
+    build: nginx:alpine
     container_name: nginx
     restart: unless-stopped
     ports:
