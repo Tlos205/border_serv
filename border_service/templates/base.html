@@ -4,19 +4,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      {% block title %} Пограничное управление ФСБ России по Республике Карелия
-      {% endblock %}
-    </title>
+
+    <!-- Основные SEO-теги (Яндекс и Google) -->
+    <title>{% block title %}Пограничное управление ФСБ России по Республике Карелия{% endblock %}</title>
+    
+    {% block meta_description %}
+    <meta name="description" content="Официальный сайт Пограничного управления ФСБ России по Республике Карелия. Вакансии по контракту, новости, контакты.">
+    {% endblock %}
+
+    {% block meta_keywords %}
+    <meta name="keywords" content="пограничная служба, ФСБ Карелия, военная служба по контракту, вакансии пограничников">
+    {% endblock %}
+
+    <!-- Open Graph — ВК, Telegram, Одноклассники -->
+    {% block og_tags %}
+    {% comment %} <meta property="og:title" content="{% block og_title %}{% block title %}{% endblock %}{% endblock %}"> {% endcomment %}
+    <meta property="og:description" content="{% block og_description %}{% block meta_description_inner %}Официальный сайт Пограничного управления ФСБ России по Республике Карелия{% endblock %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}https://karelia-border.ru/media/meta/default-1200x630.jpg{% endblock %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:locale" content="ru_RU">
+    {% comment %} <meta property="vk:image" content="{% block vk_image %}{% block og_image %}{% endblock %}{% endblock %}"> {% endcomment %}
+    {% endblock %}
+    <!-- Яндекс.Метрика (вставляй в дочерних шаблонах при необходимости) -->
+    {% block yandex_metrika %}{% endblock %}
+
 
     <!-- Фавиконка и яблочные иконки -->
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
-
     <!-- Основные стили -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/accessibility.css' %}" />
     <!-- версия для слабовидящих -->
-
     <!-- Шрифт PT Sans (как на большинстве госсайтов) -->
     <link
       href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"

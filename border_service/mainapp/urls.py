@@ -14,4 +14,5 @@ urlpatterns = [
     path('presscenter/', views.presscenter, name='presscenter'),
     path('contacts/', views.contacts, name='contacts'),
     path('feedback/', views.feedback, name='feedback'),
+    path('test-meta/', views.ultra_test, name='test_meta'),
 ]

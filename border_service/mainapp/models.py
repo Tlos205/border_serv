@@ -2,6 +2,7 @@
 from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField   # для красивого редактирования текста
+from meta.models import ModelMeta
 
 
 class News(models.Model):
@@ -50,23 +51,97 @@ class Leader(models.Model):
     def __str__(self):
         return f"{self.rank} {self.full_name}"
     
-class Vacancy(models.Model):
+
+class Vacancy(ModelMeta, models.Model):
     military_unit = models.CharField("Районное подразделение", max_length=200, blank=True)
     title = models.CharField("Должность", max_length=200)
     rank = models.CharField("Звание", max_length=100, blank=True)
     salary_from = models.PositiveIntegerField("Денежное довольствие от, руб.")
-    salary_to = models.PositiveIntegerField("Денежное довольствие до, руб.", blank=True, null=True)
+    salary_to = models.PositiveIntegerField(
+        "Денежное довольствие до, руб.", blank=True, null=True
+    )
     requirements = models.TextField("Требования")
     duties = models.TextField("Обязанности", blank=True)
     benefits = models.TextField("Льготы и гарантии", blank=True)
     contact_phone = models.CharField("Телефон для связи по вакансии", max_length=30, blank=True)
     is_published = models.BooleanField("Опубликовано", default=True)
-    sort_order = models.PositiveIntegerField("Порядок", default=0)
+    sort_order = models.PositiveIntegerField("Порядок", default=0)  # PositiveIntegerField → PositiveField (Django 5+)
+
+    # ──────────────────────── SEO-МЕТАДАННЫЕ ────────────────────────
+    _metadata = {
+        # Основное
+        "title": "get_meta_title",
+        "description": "get_meta_description",
+        "keywords": "get_meta_keywords",
+        "image": "get_meta_image",
+
+        # Open Graph (ВК, Telegram, WhatsApp, Facebook)
+        "og_title": "get_meta_title",
+        "og_description": "get_meta_description",
+        "og_type": "job.posting",                     # ← идеально для вакансий!
+
+        # Twitter Cards
+        "twitter_card": "summary_large_image",
+        "twitter_title": "get_meta_title",
+        "twitter_description": "get_meta_description",
+
+        # Schema.org — очень любит Google и Яндекс
+        "schemaorg_type": "JobPosting",
+
+        # Принудительно включаем все протоколы
+        "use_og": True,
+        "use_twitter": True,
+        "use_schemaorg": True,
+    }
 
     class Meta:
         verbose_name = "Вакансия (контракт)"
         verbose_name_plural = "Вакансии на контракт"
-        ordering = ['sort_order']
+        ordering = ["sort_order"]
 
     def __str__(self):
         return self.title
+
+    # ──────────────────────── МЕТОДЫ ДЛЯ МЕТА ────────────────────────
+    def get_meta_title(self):
+        parts = []
+        if self.rank:
+            parts.append(self.rank.strip())
+        parts.append(self.title.strip())
+        if self.military_unit:
+            parts.append(f"— {self.military_unit.strip()}")
+        parts.append("Вакансия по контракту в Погранслужбе ФСБ")
+        return " ".join(parts)
+
+    def get_meta_description(self):
+        salary = f"от {self.salary_from:,} ₽".replace(",", " ")
+        if self.salary_to:
+            salary += f" до {self.salary_to:,} ₽".replace(",", " ")
+
+        desc = (
+            f"Вакансия: {self.title}. "
+            f"Денежное довольствие {salary}. "
+            f"{self.requirements.strip()[:110]}..."
+        )
+        return desc[:155] + "…" if len(desc) > 155 else desc
+
+    def get_meta_keywords(self):
+        keywords = [
+            "военная служба по контракту",
+            "пограничная служба",
+            "ФСБ Карелия",
+            "вакансии пограничников",
+            self.title.lower(),
+        ]
+        if self.rank:
+            keywords.append(self.rank.lower())
+        if self.military_unit:
+            keywords.append(self.military_unit.lower())
+        return keywords
+
+    def get_meta_image(self):
+        """
+        Если потом добавишь поле image = models.ImageField(...) — просто верни 'image'
+        Пока — дефолтная картинка из media
+        """
+        return "meta/default-vacancy.jpg"   # лежит в /media/meta/default-vacancy.jpg

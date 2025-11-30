@@ -16,9 +16,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+
     'mainapp',
     'ckeditor',
     'ckeditor_uploader',
+    'meta',
 ]
 
 MIDDLEWARE = [
@@ -113,3 +115,26 @@ CKEDITOR_CONFIGS = {
         'width': '100%',
     },
 }
+
+
+# Базовый домен и протокол (можно использовать sites-фреймворк)
+# META_SITE_DOMAIN = 'karelia-border.ru'  # Твой домен
+META_SITE_DOMAIN = '127.0.0.1:8000'  # Твой домен
+# META_SITE_PROTOCOL = 'https'     # Или 'http' для dev
+META_SITE_PROTOCOL = 'http'     # Или 'http' для dev
+META_USE_SITES = False           # True, если используешь django.contrib.sites
+
+# Включаем/выключаем типы тегов
+META_USE_OG_PROPERTIES = True    # OpenGraph (Facebook)
+META_USE_TWITTER_PROPERTIES = True  # Twitter Cards
+META_USE_SCHEMAORG_PROPERTIES = True  # Schema.org (JSON-LD)
+
+# Базовый URL для изображений (аналог STATIC_URL)
+META_IMAGE_URL = '/media/'  # Путь к изображениям в meta-тегах
+
+# Ключевые слова по умолчанию (если не заданы в view)
+META_USE_DEFAULT_KEYWORDS = True
+META_INCLUDE_KEYWORDS = ['django', 'meta']  # Твои глобальные ключевые слова
+
+# Другие опции (см. docs: https://django-meta.readthedocs.io/en/latest/settings.html)
+META_USE_TITLE_IN_META = True  # Авто-генерация title в meta
