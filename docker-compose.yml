@@ -19,9 +19,9 @@ services:
       retries: 5
 
   web:
-    build:
-      context: .
-      # dockerfile: Dockerfile.prod   # отдельный лёгкий Dockerfile для прода
+    build: 
+      context: ../border_service
+      dockerfile: ../border_service/Dockerfile
     container_name: django-web
     expose:
       - "8000"
