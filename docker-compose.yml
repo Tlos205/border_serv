@@ -36,7 +36,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     command: >
-      sh -c "gunicorn project.wsgi:application 
+      sh -c "gunicorn border_service.wsgi:application 
              --bind 0.0.0.0:8000 
              --workers 4 
              --worker-class uvicorn.workers.UvicornWorker
