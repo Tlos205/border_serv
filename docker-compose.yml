@@ -1,0 +1,65 @@
+# docker-compose.yml
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: django-postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.prod   # отдельный лёгкий Dockerfile для прода
+    container_name: django-web
+    expose:
+      - "8000"
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    environment:
+      - DEBUG=0
+      - SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}   # например: example.com,www.example.com
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    command: >
+      sh -c "gunicorn project.wsgi:application 
+             --bind 0.0.0.0:8000 
+             --workers 4 
+             --worker-class uvicorn.workers.UvicornWorker
+             --access-logfile - 
+             --error-logfile -"
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - static_volume:/static
+      - media_volume:/media
+      - ./nginx/certs:/etc/nginx/certs:ro   # положи сюда SSL-сертификаты (или используй Certbot)
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
