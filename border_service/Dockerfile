@@ -5,31 +5,35 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
+# Устанавливаем зависимости
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev gcc git && \
     rm -rf /var/lib/apt/lists/*
 
+# Копируем и ставим зависимости + gunicorn
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
+# Копируем весь проект
 COPY . .
 
-# ← ВОТ ГЛАВНОЕ ИСПРАВЛЕНИЕ: создаём папки и даём права ДО смены пользователя
-RUN mkdir -p /app/staticfiles /app/media && \
-    chown -R django-user:django-user /app/staticfiles /app/media
-
-# Создаём пользователя и переключаемся
+# Создаём непривилегированного пользователя
 RUN adduser --disabled-password --gecos '' django-user
+
+# Создаём нужные папки и даём права уже существующему пользователю
+RUN mkdir -p /app/staticfiles /app/media && \
+    chown -R django-user:django-user /app /app/staticfiles /app/media
+
+# Переключаемся на пользователя
 USER django-user
 
-# Теперь collectstatic и migrate пройдут без ошибок
+# Теперь всё работает
 RUN python manage.py collectstatic --noinput --clear
 RUN python manage.py migrate --noinput
 
 EXPOSE 8000
 
 CMD ["gunicorn", "border_service.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "4"]
-
 
 
 
