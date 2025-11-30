@@ -20,7 +20,7 @@ services:
 
   web:
     build:
-      context: ./app
+      context: .
       # dockerfile: Dockerfile.prod   # отдельный лёгкий Dockerfile для прода
     container_name: django-web
     expose:
