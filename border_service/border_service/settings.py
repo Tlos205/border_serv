@@ -52,12 +52,43 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'border_service.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+
+import os
+from pathlib import Path
+
+# Импортируем заранее — если пакета нет, упадём сразу при старте, а не в runtime
+try:
+    import dj_database_url
+except ImportError:
+    dj_database_url = None
+
+
+# === DATABASES ===
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if DATABASE_URL and dj_database_url:
+    DATABASES = {
+        'default': dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True if 'sslmode=require' in DATABASE_URL else False
+        )
     }
-}
+else:
+    # Только для локальной разработки
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
