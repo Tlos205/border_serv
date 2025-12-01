@@ -21,6 +21,8 @@ services:
   web:
     build: ./border_service
     container_name: django-web
+    ports:
+      - "8000:8000"
     expose:
       - "8000"
     volumes:

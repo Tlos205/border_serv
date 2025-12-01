@@ -19,8 +19,12 @@ USER django-user
 
 EXPOSE 8000
 
-CMD ["gunicorn", "border_service.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
-
+CMD ["gunicorn", "border_service.wsgi:application", \
+     "--bind", "0.0.0.0:8000", \
+     "--workers", "4", \
+     "--worker-class", "uvicorn.workers.UvicornWorker", \
+     "--access-logfile", "-", \
+     "--error-logfile", "-"]
 
 
 # FROM python:3.12-slim
