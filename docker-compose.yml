@@ -43,20 +43,20 @@ services:
              --access-logfile - 
              --error-logfile -"
 
-  nginx:
-    image: nginx:alpine
-    container_name: nginx
-    restart: unless-stopped
-    ports:
-      - "8080:80"
-      - "8443:443"
-    volumes:
-      - static_volume:/static
-      - media_volume:/media
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./nginx/certs:/etc/nginx/certs:ro   # положи сюда SSL-сертификаты (или используй Certbot)
-    depends_on:
-      - web
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: nginx
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8080:80"
+  #     - "8443:443"
+  #   volumes:
+  #     - static_volume:/static
+  #     - media_volume:/media
+  #     - ./nginx/conf.d:/etc/nginx/conf.d:ro
+  #     - ./nginx/certs:/etc/nginx/certs:ro   # положи сюда SSL-сертификаты (или используй Certbot)
+  #   depends_on:
+  #     - web
 
 volumes:
   postgres_data:

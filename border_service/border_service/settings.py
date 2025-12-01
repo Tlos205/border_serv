@@ -6,7 +6,7 @@ SECRET_KEY = 'django-insecure-a@%hd0+$i!+#)#yv@y3+)i$-fc(xeb-ibgac))b1p&we@eo&e3
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['karelia-border.ru', 'www.karelia-border.ru', '84.201.180.60']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
