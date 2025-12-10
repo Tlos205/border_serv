@@ -2,35 +2,61 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
+    {% include 'includes/yandex_metrika.html' %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Основные SEO-теги (Яндекс и Google) -->
-    <title>{% block title %}Пограничное управление ФСБ России по Республике Карелия{% endblock %}</title>
-    
-    {% block meta_description %}
-    <meta name="description" content="Официальный сайт Пограничного управления ФСБ России по Республике Карелия. Вакансии по контракту, новости, контакты.">
-    {% endblock %}
+    <title>
+      {% block title %}Пограничное управление ФСБ России по Республике Карелия{% endblock %}
+    </title>
 
-    {% block meta_keywords %}
-    <meta name="keywords" content="пограничная служба, ФСБ Карелия, военная служба по контракту, вакансии пограничников">
+    {% block meta_description %}
+    <meta
+      name="description"
+      content="Официальный сайт Пограничного управления ФСБ России по Республике Карелия. Вакансии по контракту, новости, контакты."
+    />
+    {% endblock %} {% block meta_keywords %}
+    <meta
+      name="keywords"
+      content="пограничная служба, ФСБ Карелия, военная служба по контракту, вакансии пограничников"
+    />
     {% endblock %}
 
     <!-- Open Graph — ВК, Telegram, Одноклассники -->
-    {% block og_tags %}
-    {% comment %} <meta property="og:title" content="{% block og_title %}{% block title %}{% endblock %}{% endblock %}"> {% endcomment %}
-    <meta property="og:description" content="{% block og_description %}{% block meta_description_inner %}Официальный сайт Пограничного управления ФСБ России по Республике Карелия{% endblock %}{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}https://karelia-border.ru/media/meta/default-1200x630.jpg{% endblock %}">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
-    <meta property="og:locale" content="ru_RU">
-    {% comment %} <meta property="vk:image" content="{% block vk_image %}{% block og_image %}{% endblock %}{% endblock %}"> {% endcomment %}
+    {% block og_tags %} 
+    {% comment %}
+    <meta
+      property="og:title"
+      content="{% block og_title %}{% block title %}{% endblock %}{% endblock %}"
+    />
+    {% endcomment %}
+    <meta
+      property="og:description"
+      content="{% block og_description %}{% block meta_description_inner %}Официальный сайт Пограничного управления ФСБ России по Республике Карелия{% endblock %}{% endblock %}"
+    />
+    <meta
+      property="og:image"
+      content="{% block og_image %}https://karelia-border.ru/media/meta/default-1200x630.jpg{% endblock %}"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta
+      property="og:type"
+      content="{% block og_type %}website{% endblock %}"
+    />
+    <meta property="og:locale" content="ru_RU" />
+    {% comment %}
+    <meta
+      property="vk:image"
+      content="{% block vk_image %}{% block og_image %}{% endblock %}{% endblock %}"
+    />
+    {% endcomment %} 
     {% endblock %}
+    
     <!-- Яндекс.Метрика (вставляй в дочерних шаблонах при необходимости) -->
-    {% block yandex_metrika %}{% endblock %}
-
+    {% block yandex_metrika %} {% endblock %}
 
     <!-- Фавиконка и яблочные иконки -->
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
@@ -43,6 +69,9 @@
       href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
+
+   
+
   </head>
   <body class="{% block body_class %}{% endblock %}">
     <!-- КНОПКА И ПАНЕЛЬ ДОСТУПНОСТИ — ГОТОВОЕ РЕШЕНИЕ -->
@@ -93,13 +122,18 @@
             <img src="{% static 'img/emblem.png' %}" alt="Герб РФ" />
             <div class="header-title">
               <h1>
-                Пограничное управление ФСБ России<br>по Республике Карелия
+                Пограничное управление ФСБ России<br />по Республике Карелия
               </h1>
             </div>
           </div>
           <div class="header-banners">
-            {% comment %} <a href="tel:88001234567" class="banner-trust">Телефон доверия ФСБ: 8-800-...</a> {% endcomment %}
-            {% comment %} <a href="#" class="banner-corruption">Сообщить о коррупции</a> {% endcomment %}
+            {% comment %}
+            <a href="tel:88001234567" class="banner-trust"
+              >Телефон доверия ФСБ: 8-800-...</a
+            >
+            {% endcomment %} {% comment %}
+            <a href="#" class="banner-corruption">Сообщить о коррупции</a> {%
+            endcomment %}
           </div>
         </div>
       </div>
@@ -110,15 +144,22 @@
       <div class="container">
         <ul class="nav-list">
           <li><a href="{% url 'home' %}">Главная</a></li>
-          <li><a href="{% url 'contract_vacancies' %}">Вакансии (контракт)</a></li>
+          <li>
+            <a href="{% url 'contract_vacancies' %}">Вакансии (контракт)</a>
+          </li>
           <li><a href="{% url 'requirements' %}">Требования</a></li>
           <li><a href="{% url 'leadership' %}">Руководство</a></li>
           <li><a href="{% url 'structure' %}">Структура</a></li>
           <li><a href="{% url 'activity' %}">Деятельность</a></li>
           <li><a href="{% url 'gosuslugi' %}">Государственные услуги</a></li>
           <li><a href="{% url 'service' %}">Пограничная служба</a></li>
-          {% comment %} <li><a href="{% url 'residents' %}">Для жителей приграничья</a></li> {% endcomment %}
-          {% comment %} <li><a href="{% url 'presscenter' %}">Информационные материалы</a></li> {% endcomment %}
+          {% comment %}
+          <li><a href="{% url 'residents' %}">Для жителей приграничья</a></li>
+          {% endcomment %} {% comment %}
+          <li>
+            <a href="{% url 'presscenter' %}">Информационные материалы</a>
+          </li>
+          {% endcomment %}
           <li><a href="{% url 'contacts' %}">Контакты</a></li>
           <li><a href="{% url 'feedback' %}">Обратная связь</a></li>
         </ul>

@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -6,7 +7,10 @@ SECRET_KEY = 'django-insecure-a@%hd0+$i!+#)#yv@y3+)i$-fc(xeb-ibgac))b1p&we@eo&e3
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['karelia-border.ru', 'www.karelia-border.ru', '84.201.180.60']
+if DEBUG:
+    ALLOWED_HOSTS=[]
+else:
+    ALLOWED_HOSTS = ['karelia-border.ru', 'www.karelia-border.ru', '84.201.180.60']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -16,7 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-
+    #------------------------#
     'mainapp',
     'ckeditor',
     'ckeditor_uploader',
@@ -52,11 +56,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'border_service.wsgi.application'
 
-
-
-import os
-from pathlib import Path
-
 # Импортируем заранее — если пакета нет, упадём сразу при старте, а не в runtime
 try:
     import dj_database_url
@@ -83,12 +82,7 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -105,12 +99,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'ru-ru'
+# ---- в проде работало с этими данными ---- #
+# STATIC_ROOT = '/app/staticfiles'
+# MEDIA_ROOT = '/app/media'
 
+
+LANGUAGE_CODE = 'ru-ru'
 TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
-
 USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -118,7 +115,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -169,3 +165,8 @@ META_INCLUDE_KEYWORDS = ['django', 'meta']  # Твои глобальные кл
 
 # Другие опции (см. docs: https://django-meta.readthedocs.io/en/latest/settings.html)
 META_USE_TITLE_IN_META = True  # Авто-генерация title в meta
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://karelia-border.ru',
+    'https://www.karelia-border.ru',
+]
