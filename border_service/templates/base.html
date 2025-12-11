@@ -33,7 +33,11 @@
     {% endcomment %}
     <meta
       property="og:description"
-      content="{% block og_description %}{% block meta_description_inner %}Официальный сайт Пограничного управления ФСБ России по Республике Карелия{% endblock %}{% endblock %}"
+      content="{% block og_description %}
+      {% block meta_description_inner %}
+      Официальный сайт Пограничного управления ФСБ России по Республике Карелия
+      {% endblock %}
+      {% endblock %}"
     />
     <meta
       property="og:image"
@@ -65,10 +69,8 @@
     <link rel="stylesheet" href="{% static 'css/accessibility.css' %}" />
     <!-- версия для слабовидящих -->
     <!-- Шрифт PT Sans (как на большинстве госсайтов) -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
+          rel="stylesheet">
 
    
 
@@ -83,7 +85,7 @@
         aria-label="Версия для слабовидящих"
         title="Версия для слабовидящих"
       >
-        <span aria-hidden="true">Глаз</span>
+        <span aria-hidden="true"></span>
       </button>
 
       <!-- Панель с настройками (изначально скрыта) -->
@@ -128,12 +130,11 @@
           </div>
           <div class="header-banners">
             {% comment %}
-            <a href="tel:88001234567" class="banner-trust"
-              >Телефон доверия ФСБ: 8-800-...</a
-            >
-            {% endcomment %} {% comment %}
-            <a href="#" class="banner-corruption">Сообщить о коррупции</a> {%
-            endcomment %}
+            <a href="tel:88001234567" class="banner-trust">Телефон доверия ФСБ: 8-800-...</a>
+            {% endcomment %} 
+            {% comment %}
+            <a href="#" class="banner-corruption">Сообщить о коррупции</a> 
+            {%endcomment %}
           </div>
         </div>
       </div>
