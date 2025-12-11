@@ -59,9 +59,6 @@
     {% endcomment %} 
     {% endblock %}
     
-    <!-- Яндекс.Метрика (вставляй в дочерних шаблонах при необходимости) -->
-    {% block yandex_metrika %} {% endblock %}
-
     <!-- Фавиконка и яблочные иконки -->
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
     <!-- Основные стили -->
@@ -140,8 +137,42 @@
       </div>
     </header>
 
+
+
+<!-- Навигация -->
+<nav class="nav">
+  <div class="container">
+    <!-- Бургер-кнопка (видна только на мобильных) -->
+    <label for="mobile-menu-toggle" class="nav-toggle" aria-label="Открыть меню">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </label>
+
+    <!-- Чекбокс-триггер (скрыт) -->
+    <input type="checkbox" id="mobile-menu-toggle" class="menu-checkbox">
+
+    <!-- Само меню -->
+    <ul class="nav-list">
+      <li><a href="{% url 'home' %}">Главная</a></li>
+      <li><a href="{% url 'contract_vacancies' %}">Вакансии (контракт)</a></li>
+      <li><a href="{% url 'requirements' %}">Требования</a></li>
+      <li><a href="{% url 'leadership' %}">Руководство</a></li>
+      <li><a href="{% url 'structure' %}">Структура</a></li>
+      <li><a href="{% url 'activity' %}">Деятельность</a></li>
+      <li><a href="{% url 'gosuslugi' %}">Государственные услуги</a></li>
+      <li><a href="{% url 'service' %}">Пограничная служба</a></li>
+      <li><a href="{% url 'contacts' %}">Контакты</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
     <!-- Навигация -->
-    <nav class="nav">
+    {% comment %} <nav class="nav">
       <div class="container">
         <ul class="nav-list">
           <li><a href="{% url 'home' %}">Главная</a></li>
@@ -154,18 +185,22 @@
           <li><a href="{% url 'activity' %}">Деятельность</a></li>
           <li><a href="{% url 'gosuslugi' %}">Государственные услуги</a></li>
           <li><a href="{% url 'service' %}">Пограничная служба</a></li>
+          <li><a href="{% url 'contacts' %}">Контакты</a></li>
           {% comment %}
           <li><a href="{% url 'residents' %}">Для жителей приграничья</a></li>
-          {% endcomment %} {% comment %}
+          {% endcomment %} 
+          {% comment %}
+          
           <li>
             <a href="{% url 'presscenter' %}">Информационные материалы</a>
           </li>
           {% endcomment %}
-          <li><a href="{% url 'contacts' %}">Контакты</a></li>
+          {% comment %} 
           <li><a href="{% url 'feedback' %}">Обратная связь</a></li>
-        </ul>
+          {% endcomment %}
+        {% comment %}</ul>
       </div>
-    </nav>
+    </nav> {% endcomment %}
 
     <!-- Основное содержимое -->
     <main class="container">{% block content %} {% endblock %}</main>
@@ -174,7 +209,7 @@
     <footer class="footer">
       <div class="container">
         <p>
-          &copy; 2025 Пограничное управление ФСБ России по Республике Карелия
+          &copy; {% now "Y" %} Пограничное управление ФСБ России по Республике Карелия
         </p>
         <p>Телефон дежурного: +7 (8142) 79-01-56 | Email: pu.karelia@fsb.ru</p>
       </div>
