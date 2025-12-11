@@ -68,50 +68,16 @@
     <!-- Шрифт PT Sans (как на большинстве госсайтов) -->
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
           rel="stylesheet">
-
-   
-
   </head>
+
   <body class="{% block body_class %}{% endblock %}">
     <!-- КНОПКА И ПАНЕЛЬ ДОСТУПНОСТИ — ГОТОВОЕ РЕШЕНИЕ -->
     <div class="accessibility-wrapper">
-      <!-- Кнопка-глазик в правом верхнем углу -->
-      <button
-        type="button"
-        id="accessibility-toggle"
-        aria-label="Версия для слабовидящих"
-        title="Версия для слабовидящих"
-      >
-        <span aria-hidden="true"></span>
-      </button>
-
-      <!-- Панель с настройками (изначально скрыта) -->
-      <div
-        id="accessibility-panel"
+      <div id="accessibility-panel"
         role="region"
-        aria-label="Настройки доступности"
-      >
-        <div class="accessibility-header">
-          <span>Версия для слабовидящих</span>
-          <button
-            type="button"
-            id="accessibility-close"
-            aria-label="Закрыть панель"
-          >
-            ×
-          </button>
-        </div>
-
-        <div class="accessibility-buttons">
-          <button type="button" id="high-contrast" class="acc-btn">
-            Высококонтрастный
-          </button>
-          <button type="button" id="font-increase" class="acc-btn">А+</button>
-          <button type="button" id="font-decrease" class="acc-btn">А-</button>
-          <button type="button" id="font-reset" class="acc-btn">Сброс</button>
-        </div>
+        aria-label="Настройки доступности">
       </div>
-    </div>
+    </div> 
 
     <!-- Шапка -->
     <header class="header">
@@ -121,7 +87,7 @@
             <img src="{% static 'img/emblem.png' %}" alt="Герб РФ" />
             <div class="header-title">
               <h1>
-                Пограничное управление ФСБ России<br />по Республике Карелия
+                Пограничное управление ФСБ России по Республике Карелия
               </h1>
             </div>
           </div>
