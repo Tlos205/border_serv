@@ -14,7 +14,7 @@
     {% block meta_description %}
     <meta
       name="description"
-      content="Официальный сайт Пограничного управления ФСБ России по Республике Карелия. Вакансии по контракту, новости, контакты."
+      content="Сайт Пограничного управления ФСБ России по Республике Карелия. Вакансии по контракту, новости, контакты."
     />
     {% endblock %} {% block meta_keywords %}
     <meta
@@ -35,7 +35,7 @@
       property="og:description"
       content="{% block og_description %}
       {% block meta_description_inner %}
-      Официальный сайт Пограничного управления ФСБ России по Республике Карелия
+      Сайт Пограничного управления ФСБ России по Республике Карелия
       {% endblock %}
       {% endblock %}"
     />
@@ -123,7 +123,7 @@
       <li><a href="{% url 'home' %}">Главная</a></li>
       <li><a href="{% url 'contract_vacancies' %}">Вакансии (контракт)</a></li>
       <li><a href="{% url 'requirements' %}">Требования</a></li>
-      <li><a href="{% url 'leadership' %}">Руководство</a></li>
+      {% comment %} <li><a href="{% url 'leadership' %}">Руководство</a></li> {% endcomment %}
       <li><a href="{% url 'structure' %}">Структура</a></li>
       <li><a href="{% url 'activity' %}">Деятельность</a></li>
       <li><a href="{% url 'gosuslugi' %}">Государственные услуги</a></li>
