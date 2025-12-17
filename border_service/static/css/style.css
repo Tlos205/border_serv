@@ -804,7 +804,7 @@ main {
 
 /* Скрываем чекбокс */
 .menu-checkbox {
-    display: none;
+    display: none !important;
 }
 
 /* Показываем меню когда чекбокс отмечен */

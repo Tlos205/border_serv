@@ -73,7 +73,7 @@ def contract_vacancies(request):
         'vacancies': vacancies,
     })
 
-def requirements(request):
+def requirements(request): 
     return render(request, 'requirements.html')
 
 def activity(request):
